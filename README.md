@@ -22,6 +22,7 @@ The script can only be used on Artix Linux.
    * go-yq - Parse booster and booster-um-artix configs
    * eukify - Generate UKI files
    * util-linux - Miscellaneous system utilities for Linux
+   * egummiboot - provide the efistub normally added by systemd-boot
  * Optional:
    * sbctl - Sign UKI files
    * sbsigntools - Sign UKI files with sbsign
