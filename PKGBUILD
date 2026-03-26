@@ -32,7 +32,7 @@ package() {
   touch "${pkgdir}/etc/booster-um.yaml"
 
   # Install the booster-um
-  install -Dm755 booster-um-artix -t "${pkgdir}/usr/bin"
+  install -Dm755 booster-um -t "${pkgdir}/usr/bin"
 
   # Install the helper scripts
   for script in scripts/*; do
