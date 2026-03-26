@@ -7,7 +7,7 @@ _generate_uki() {
   # arguments
   local pkgbase="$1"
 
-  # systemd-ukify paths
+  # eukify paths
   local CMDLINE SPLASH UNAME VMLINUZ UKI INITRD
   UNAME="$2"
 

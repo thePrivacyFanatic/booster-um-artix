@@ -14,7 +14,7 @@ booster-um config file is located at `/etc/booster-um.yaml`. It is empty by defa
  generate_fallback: true
 
  cmdline: >
-   root=LABEL=arch_root
+   root=LABEL=artix_root
    rw
    quiet
    loglevel=3
@@ -22,7 +22,7 @@ booster-um config file is located at `/etc/booster-um.yaml`. It is empty by defa
    sysrq_always_enabled=1
 
  fallback_cmdline: >
-   root=LABEL=arch_root
+   root=LABEL=artix_root
    rw
    sysrq_always_enabled=1
 
@@ -30,7 +30,7 @@ booster-um config file is located at `/etc/booster-um.yaml`. It is empty by defa
    cmdline_per_kernel: false
    share_default_cmdline: false
    default_initramfs: [default, fallback]
-   default_splash: /usr/share/systemd/bootctl/splash-arch.bmp
+   default_splash: /usr/share/egummiboot/bootctl/splash-artix.bmp
    linux:
      # splash:
      # cmdline:
@@ -72,11 +72,11 @@ remove_leftovers: true
 generate_fallback: true
 
 cmdline: >
-  root=LABEL=arch_root
+  root=LABEL=artix_root
   rw
   quiet
 
-fallback_cmdline: "root=LABEL=arch_root rw"
+fallback_cmdline: "root=LABEL=artix_root rw"
 ```
 
 * `sign_uki` manages the UKI signing. If enabled, `sbctl` (or `sbsign`), will sign generated UKI files. If it is not specified, its value is set to `true`
@@ -91,7 +91,7 @@ fallback_cmdline: "root=LABEL=arch_root rw"
 
 * `low_memory` is an option that prevents high memory usage, especially when fallback images are generated. Instead of generating initramfs in parallel, booster-um will generate initramfs one by one. This is certainly slower, but takes up less memory. If it is not specified, its value is set to `false`
 
-* `enable_splash` is an option that enables splash screen. If you want to disable splash for **all specified or unspecified** kernels under `kernel_config` node, set it to `false`. By default this option is enabled and `/usr/share/systemd/bootctl/splash-arch.bmp` splash will be used (you can change it with `default_splash` option under `kernel_config` node)
+* `enable_splash` is an option that enables splash screen. If you want to disable splash for **all specified or unspecified** kernels under `kernel_config` node, set it to `false`. By default this option is enabled and `/usr/share/egummiboot/bootctl/splash-artix.bmp` splash will be used (you can change it with `default_splash` option under `kernel_config` node)
 
 * `remove_leftovers` manages the removal of leftovers when generating the UKI files. Besides the vmlinuz and booster files, EFI entries, fallback images and kernel cmdlines are treated as leftovers, they will be removed if `efistub`, `cmdline_per_kernel`, `generate_fallback` options are disabled. If enabled, leftovers will always be removed after generating UKI files. Leftovers will always be removed if you manually delete the UKI for the specified kernel or all installed kernels (`booster-um -r <package>` or `booster-um -R`/`booster-um -C`). If it is not specified, its value is set to `true`
 
@@ -100,7 +100,7 @@ fallback_cmdline: "root=LABEL=arch_root rw"
 * `cmdline` is the default kernel cmdline and is used by **all** kernels. If `cmdline` is not defined here, booster-um will try to use the cmdline from `/etc/kernel/cmdline` file. If cmdline is not defined neither in the config nor in the `/etc/kernel/cmdline` file, the current cmdline from `/proc/cmdline` will be used. Kernel parameters can be written in multiple lines after the `>` sign. For example:
   ```YAML
   cmdline: >
-    root=LABEL=arch_root
+    root=LABEL=artix_root
     rw
     quiet
   ```
@@ -117,18 +117,18 @@ fallback_cmdline: "root=LABEL=arch_root rw"
    default_splash: /path/to/splash.bmp
    linux: 
      cmdline: >
-       root=LABEL=arch_root
+       root=LABEL=artix_root
        rw
        quiet
-     fallback_cmdline: "root=LABEL=arch_root rw"
+     fallback_cmdline: "root=LABEL=artix_root rw"
      initramfs: [default]
      booster_config: |
        compression: zstd
        extra_files: busybox,fsck,fsck.ext4
    linux-lts:
      splash: false
-     cmdline: "root=LABEL=arch_root rw quiet"
-     fallback_cmdline: "root=LABEL=arch_root rw"
+     cmdline: "root=LABEL=artix_root rw quiet"
+     fallback_cmdline: "root=LABEL=artix_root rw"
      initramfs: [fallback]
 ```
 
@@ -143,7 +143,7 @@ fallback_cmdline: "root=LABEL=arch_root rw"
   * `default_initramfs` array provides initramfs type configuration for all other unspecified kernels. You can specify up to two types, `default` and `fallback`. if not defined, its values ​​will be `default` and `fallback`
    > **Note**: If you specified `fallback` type, you must enable `generate_fallback`, otherwise it will generate `default` images only
  
-  * `default_splash` a picture to display during boot. This is the default splash for all **unspecified** kernels under `kernel_config` node. The argument is a path to a BMP file. The default `/usr/share/systemd/bootctl/splash-arch.bmp` picture will be used if this path is invalid or not specified. To disable splash screen for all **unspecified pkgbases** under `kernel_config` node, simply set this option to `false` or leave it blank, for example:
+  * `default_splash` a picture to display during boot. This is the default splash for all **unspecified** kernels under `kernel_config` node. The argument is a path to a BMP file. The default `/usr/share/egummiboot/bootctl/splash-artix.bmp` picture will be used if this path is invalid or not specified. To disable splash screen for all **unspecified pkgbases** under `kernel_config` node, simply set this option to `false` or leave it blank, for example:
     ```YAML
       # valid options
       kernel_config:

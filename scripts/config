@@ -16,7 +16,7 @@ declare -g CONFIG=/etc/booster-um.yaml
 declare -g BOOSTER_CONFIG=/etc/booster.yaml
 
 # Set the default Arch Linux splash
-declare -g arch_splash=/usr/share/systemd/bootctl/splash-arch.bmp
+declare -g arch_splash=/usr/share/egummiboot/bootctl/splash-arch.bmp
 
 # Checks if booster-um.yaml config is valid
 _check_config() {
