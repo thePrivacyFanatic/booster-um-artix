@@ -11,7 +11,7 @@ provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
 backup=('etc/booster-um.yaml')
-depends=('booster' 'go-yq' 'systemd' 'systemd-ukify' 'util-linux')
+depends=('booster' 'go-yq' 'egummiboot' 'eukify' 'util-linux')
 optdepends=('sbctl: Sign the UKI files'
             'sbsigntools: Sign the UKI files with sbsign'
             'efibootmgr: Manage EFI entries')
