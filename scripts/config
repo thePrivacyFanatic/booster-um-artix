@@ -15,8 +15,8 @@ declare -A initramfs_config
 declare -g CONFIG=/etc/booster-um.yaml
 declare -g BOOSTER_CONFIG=/etc/booster.yaml
 
-# Set the default Arch Linux splash
-declare -g artix-splash=/usr/share/egummiboot/bootctl/splash-artix.bmp
+# Set the default Artix Linux splash
+declare -g artix_splash=/usr/share/egummiboot/bootctl/splash-artix.bmp
 
 # Checks if booster-um.yaml config is valid
 _check_config() {
@@ -296,7 +296,7 @@ _get_splash_path() {
   _should_enable_splash || return 0
 
   # If the config file doesn't exist or is not valid, use the default arch linux splash
-  if (( $CONFIG_VALID )); then echo "$artix-splash" && return; fi
+  if (( $CONFIG_VALID )); then echo "$artix_splash" && return; fi
 
   # Set the pkgbase splash path from the config file
   local pkgbase_splash="$(yq ".kernel_config.${pkgbase}.splash" "$CONFIG")"
@@ -321,9 +321,9 @@ _get_splash_path() {
     fi
 
     # If splash path is not specified or does not exist, use the default arch linux splash
-    if [[ $default_splash == null || ! -e $default_splash ]]; then splash="$artix-splash"; fi
+    if [[ $default_splash == null || ! -e $default_splash ]]; then splash="$artix_splash"; fi
   fi
 
   # Finally, return the splash path if the splash is a BMP file
-  if _is_bmp "$splash"; then echo "$splash"; else echo "$artix-splash"; fi
+  if _is_bmp "$splash"; then echo "$splash"; else echo "$artix_splash"; fi
 }
