@@ -34,7 +34,7 @@ The script can only be used on Artix Linux.
 
 since this package depends on artix components it can't get into the AUR, as such to install you need to run 
 ```bash
-git clone https://github.com/thePrivacyFanatic/booster-um-artix.git
+git pull https://github.com/thePrivacyFanatic/booster-um-artix.git
 cd booster-um-artix
 makepkg -si
 ```
