@@ -1,4 +1,4 @@
-# Maintainer: Zile995 <stefan.zivkovic995@gmail.com>
+# Maintainer: thePrivacyFanatic
 
 pkgname=booster-um-artix-git
 pkgver=1.7.1.r0.gce49e8c
